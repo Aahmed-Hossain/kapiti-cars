@@ -2,7 +2,7 @@
 import { useState } from 'react';
 
 import Typography from '@mui/material/Typography';
-import { Tab, Box, Tabs, OutlinedInput, InputAdornment, Button } from '@mui/material';
+import { Tab, Box, Tabs, OutlinedInput, InputAdornment, Button, Card, CardActionArea, CardMedia, CardContent, List } from '@mui/material';
 
 import useAllProducts from 'src/hooks/useProducts';
 
@@ -54,8 +54,7 @@ export default function AppView() {
     { category: 'Battery', items: 20 },
     { category: 'Brake Accessories', items: 3 },
     { category: 'Cabin Air Filter', items: 1 },
-    { category: 'Filter', items: 5 },
-    { category: 'Accessories', items: 3 },
+    { category: 'Cabin Filter', items: 4 },
   
 
   ];
@@ -88,14 +87,6 @@ export default function AppView() {
             </InputAdornment>
           }
         />
-
-        {/* <ul className='grid grid-cols-4 gap-4 mt-4' >
-          {categories?.map((item, idx) => (
-            <Button sx={{background: '#E3F2FD'}} className='' key={idx}>
-              {item.category}: {item.items}
-            </Button>
-          ))}
-        </ul> */}
 
         <div>
 
@@ -264,7 +255,70 @@ export default function AppView() {
       ))}
     </div> */}
 
-          <Box sx={{ p: 0 }}>
+
+<div className='mt-4 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-5 2xl:grid-cols-10 gap-6 md:gap-4 lg:gap-4 xl:gap-6'>
+
+
+{filteredProducts.map((product, idx) => (
+  <Box sx={{ position: 'relative', display: 'inline-block' }} key={idx}>
+    <Card sx={{ width: 'auto', maxWidth: 400, boxShadow: 4 }}>
+      <CardActionArea>
+        <CardMedia
+          component="img"
+          height={50}
+          width={50}
+          image="/public/assets/box2.png"
+          alt="green iguana"
+        />
+        <CardContent>
+          <Typography align="center" variant="body2">{product.brand_display}</Typography>
+          <Typography sx={{ padding: 0 }} variant="subtitle2">{product.name}</Typography>
+        </CardContent>
+      </CardActionArea>
+    </Card>
+    <Box 
+      sx={{
+        position: 'absolute',
+        top: '7%',
+        right: 5,
+        transform: 'translateY(-50%)',
+        backgroundColor: '#E3F2FD',
+        padding: '4px  6px',
+        borderRadius: '6px',
+        boxShadow: 12
+      }}
+    >
+      <Typography variant="caption" display="block" color='blue'>
+        {product.product_type_display}
+      </Typography>
+    </Box>
+  </Box>
+))}
+
+
+{/* {filteredProducts.map((product,idx) => (
+  <Card sx={{width:  'auto'  , maxWidth: 400, backgroundColor: '#FAFAFA',boxShadow:4 }} key={idx}>
+    <CardActionArea>
+      <CardMedia
+      className=''
+        component="img"
+        height={50}
+        width={50}
+        image="/public/assets/box2.png"
+        alt="green iguana"
+      />
+      <CardContent>
+      <Typography align='center' variant="body2">{product.brand_display}</Typography>
+        <Typography sx={{padding:0}} variant="subtitle2">{product.name}</Typography>
+       
+      </CardContent>
+    </CardActionArea>
+  </Card>
+))} */}
+</div>
+
+
+          {/* <Box sx={{ p: 0 }}>
             <ul className="grid grid-cols-4 gap-4 mt-4">
               {filteredProducts.map((product) => (
                 <li className="border bg-[#E3F2FD] p-2 rounded-md" key={product._id}>
@@ -273,7 +327,7 @@ export default function AppView() {
                 </li>
               ))}
             </ul>
-          </Box>
+          </Box> */}
         </div>
       </div>
 
