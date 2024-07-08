@@ -2,11 +2,27 @@
 import { useState } from 'react';
 
 import Typography from '@mui/material/Typography';
-import { Tab, Box, Tabs, OutlinedInput, InputAdornment, Button, Card, CardActionArea, CardMedia, CardContent, List } from '@mui/material';
+import {
+  Tab,
+  Box,
+  Fab,
+  Tabs,
+  Card,
+  Modal,
+  Button,
+  CardMedia,
+  CardContent,
+  OutlinedInput,
+  InputAdornment,
+  CardActionArea,
+} from '@mui/material';
 
 import useAllProducts from 'src/hooks/useProducts';
 
 import Iconify from 'src/components/iconify';
+
+import { FaFileInvoiceDollar } from "react-icons/fa";
+import Invoice from '../Invoice';
 
 // ----------------------------------------------------------------------
 
@@ -20,11 +36,20 @@ export default function AppView() {
     setSelectedTab(newValue);
   };
 
+
+
   // const [selectedTab, setSelectedTab] = useState(0);
 
   // const handleChange = (index) => {
   //   setSelectedTab(index);
   // };
+  const [open, setOpen] = useState(false);
+
+  // Handle open modal
+  const handleOpen = () => setOpen(true);
+  
+  // Handle close modal
+  const handleClose = () => setOpen(false);
 
   const [allProducts] = useAllProducts();
   console.log(allProducts);
@@ -55,8 +80,6 @@ export default function AppView() {
     { category: 'Brake Accessories', items: 3 },
     { category: 'Cabin Air Filter', items: 1 },
     { category: 'Cabin Filter', items: 4 },
-  
-
   ];
 
   const filteredProducts = allProducts?.filter(
@@ -89,67 +112,51 @@ export default function AppView() {
         />
 
         <div>
+          <Tabs
+            sx={{
+              '& .MuiTabs-flexContainer': {
+                display: 'flex',
+                flexDirection: { xs: 'row', sm: 'row' },
+                justifyContent: { xs: 'flex-start', sm: 'flex-start' },
+                alignItems: { xs: 'stretch', sm: 'center' },
+              },
+              '& .MuiTabs-indicator': {
+                display: 'none',
+              },
+            }}
+            value={selectedTab}
+            onChange={handleChange}
+            variant="scrollable"
+            scrollButtons="auto"
+            aria-label="product categories"
+            indicatorColor="none"
+          >
+            {categories.map((category, index) => (
+              <Tab
+                sx={{
+                  textTransform: 'none',
+                  minWidth: 100,
+                  border: 1,
+                  width: { xs: '100%', sm: 'auto' },
+                  backgroundColor: selectedTab === index ? '#E3F2FD' : '#fff',
+                  borderRadius: 0.5,
+                  mt: 2,
+                  mr: 1,
+                  boxShadow: 1,
+                  '&:hover': {
+                    backgroundColor: '#E3F2FD',
+                  },
+                  '&.Mui-selected': {
+                    backgroundColor: '#E3F2FD',
+                  },
+                }}
+                key={index}
+                label={`${category.category}: ${category.items}`}
+              />
+            ))}
+          </Tabs>
 
-
-
-
-
-        <Tabs
-  sx={{
-    '& .MuiTabs-flexContainer': {
-      display: 'flex',
-      flexDirection: { xs: 'row', sm: 'row' },
-      justifyContent: { xs: 'flex-start', sm: 'flex-start' },
-      alignItems: { xs: 'stretch', sm: 'center' },
-    },
-    '& .MuiTabs-indicator': {
-      display: 'none',
-    },
-  }}
-  value={selectedTab}
-  onChange={handleChange}
-  variant="scrollable"
-  scrollButtons="auto"
-  aria-label="product categories"
-  indicatorColor="none"
->
-  {categories.map((category, index) => (
-    <Tab
-      sx={{
-        textTransform: 'none',
-        minWidth: 100,
-        border: 1,
-        width: { xs: '100%', sm: 'auto' },
-        backgroundColor: selectedTab === index ? '#E3F2FD' : '#fff',
-        borderRadius: 0.5,
-        mt:2,
-        mr: 1,
-        boxShadow: 1,
-        '&:hover': {
-          backgroundColor: '#E3F2FD',
-        },
-        '&.Mui-selected': {
-          backgroundColor: '#E3F2FD',
-        },
-      }}
-      key={index}
-      label={`${category.category}: ${category.items}`}
-    />
-  ))}
-</Tabs>
-
-
-
-
-
-
-
-
-
-
-
-
-{/* <Tabs
+          {/* <Tabs
   sx={{
     mt: 1.5,
     display: 'grid',
@@ -185,19 +192,6 @@ export default function AppView() {
     />
   ))}
 </Tabs> */}
-
-
-
-
-
-
-
-
-
-
-
-
-
 
           {/* <Tabs
             sx={{
@@ -240,7 +234,7 @@ export default function AppView() {
             ))}
           </Tabs> */}
 
-{/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
       {categories.map((category, index) => (
         // eslint-disable-next-line react/button-has-type
         <button
@@ -255,90 +249,109 @@ export default function AppView() {
       ))}
     </div> */}
 
-
-<div className='mt-4 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-5 2xl:grid-cols-10 gap-6 md:gap-4 lg:gap-4 xl:gap-6'>
-
-
-{filteredProducts.map((product, idx) => (
-  <Box sx={{ position: 'relative', display: 'inline-block' }} key={idx}>
-    <Card sx={{ width: 'auto', maxWidth: 400, boxShadow: 4 }}>
-      <CardActionArea>
-        <CardMedia
-          component="img"
-          height={50}
-          width={50}
-          image="/public/assets/box2.png"
-          alt="green iguana"
-        />
-        <CardContent>
-          <Typography align="center" variant="body2">{product.brand_display}</Typography>
-          <Typography sx={{ padding: 0 }} variant="subtitle2">{product.name}</Typography>
-        </CardContent>
-      </CardActionArea>
-    </Card>
-    <Box 
-      sx={{
-        position: 'absolute',
-        top: '7%',
-        right: 5,
-        transform: 'translateY(-50%)',
-        backgroundColor: '#E3F2FD',
-        padding: '4px  6px',
-        borderRadius: '6px',
-        boxShadow: 12
-      }}
-    >
-      <Typography variant="caption" display="block" color='blue'>
-        {product.product_type_display}
-      </Typography>
-    </Box>
-  </Box>
-))}
-
-
-{/* {filteredProducts.map((product,idx) => (
-  <Card sx={{width:  'auto'  , maxWidth: 400, backgroundColor: '#FAFAFA',boxShadow:4 }} key={idx}>
-    <CardActionArea>
-      <CardMedia
-      className=''
-        component="img"
-        height={50}
-        width={50}
-        image="/public/assets/box2.png"
-        alt="green iguana"
-      />
-      <CardContent>
-      <Typography align='center' variant="body2">{product.brand_display}</Typography>
-        <Typography sx={{padding:0}} variant="subtitle2">{product.name}</Typography>
-       
-      </CardContent>
-    </CardActionArea>
-  </Card>
-))} */}
-</div>
-
-
-          {/* <Box sx={{ p: 0 }}>
-            <ul className="grid grid-cols-4 gap-4 mt-4">
-              {filteredProducts.map((product) => (
-                <li className="border bg-[#E3F2FD] p-2 rounded-md" key={product._id}>
-                  <Typography variant="h6">{product.name}</Typography>
-                  <Typography variant="body1">${product.retail_price}</Typography>
-                </li>
-              ))}
-            </ul>
-          </Box> */}
+          <div className="mt-4 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-5 2xl:grid-cols-10 gap-6 md:gap-4 lg:gap-4 xl:gap-6">
+            {filteredProducts.map((product, idx) => (
+              <Box sx={{ position: 'relative', display: 'inline-block' }} key={idx}>
+                <Card sx={{ width: 'auto', maxWidth: 400, boxShadow: 4 }}>
+                  <CardActionArea>
+                    <CardMedia
+                      component="img"
+                      height={50}
+                      width={50}
+                      image="/public/assets/box2.png"
+                      alt="green iguana"
+                    />
+                    <CardContent>
+                      <Typography align="center" variant="body2">
+                        {product.brand_display}
+                      </Typography>
+                      <Typography sx={{ padding: 0 }} variant="subtitle2">
+                        {product.name}
+                      </Typography>
+                    </CardContent>
+                  </CardActionArea>
+                </Card>
+                <Box
+                  sx={{
+                    position: 'absolute',
+                    top: '7%',
+                    right: 5,
+                    transform: 'translateY(-50%)',
+                    backgroundColor: '#E3F2FD',
+                    padding: '4px  6px',
+                    borderRadius: '6px',
+                    boxShadow: 12,
+                  }}
+                >
+                  <Typography variant="caption" display="block" color="blue">
+                    {product.product_type_display}
+                  </Typography>
+                </Box>
+              </Box>
+            ))}
+          </div>
         </div>
       </div>
 
 
 
-      {/* right invoice container */}
-      {/* <div className="border-2 h-screen w-1/3">
-        <Typography variant="h6" sx={{ mb: 2, mt: 1 }}>
-          Invoice {allProducts.length}
-        </Typography>
-      </div> */}
+
+
+      <div>
+      {/* Floating Button */}
+     
+     
+
+
+
+      <div>
+
+<Fab
+    color="primary" 
+    aria-label="add" 
+    onClick={handleOpen} 
+    sx={{ 
+      position: 'fixed', 
+      bottom: 16, 
+      right: 16 
+    }}
+  >
+  <FaFileInvoiceDollar className='font-bold text-3xl' />
+  </Fab>
+  
+  {/* Modal */}
+  <Modal
+    open={open}
+    onClose={handleClose}
+    aria-labelledby="modal-title"
+    aria-describedby="modal-description"
+  >
+    <Box
+      sx={{
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        width: 400,
+        bgcolor: 'background.paper',
+        border: '2px solid #000',
+        boxShadow: 24,
+        p: 4,
+      }}
+    >
+      <Typography id="modal-title" variant="h6" component="h2">
+        Modal Title
+      </Typography>
+      <Typography id="modal-description" sx={{ mt: 2 }}>
+        This is the modal content.
+      </Typography>
+      <Button onClick={handleClose} sx={{ mt: 2 }} variant="contained" color="primary">
+        Close
+      </Button>
+    </Box>
+  </Modal>
+  </div>
+    </div>
     </div>
   );
 }
