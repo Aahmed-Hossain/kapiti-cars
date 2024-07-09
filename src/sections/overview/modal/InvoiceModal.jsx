@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import { Button, ButtonGroup, Divider, IconButton } from '@mui/material';
 
-import { AiOutlineDelete } from "react-icons/ai";
+import { RiDeleteBin6Line } from "react-icons/ri";
 import { FaPlus } from 'react-icons/fa6';
 import { FiMinus } from 'react-icons/fi';
 
@@ -14,12 +14,14 @@ const invoiceData = [
   { name: 'Wurth Brake Clean', retail_price: 19.5, quantity: 3 },
   { name: 'Ryco Cabin Air Filter RCA119M', retail_price: 45.9, quantity: 6 },
   { name: 'Ryco Air Filter A1241',retail_price: 88.1, quantity: 11 },
+  { name: 'Koba Battery MF55B24R', retail_price: 63.9, quantity: 2 },
+
 ];
 // eslint-disable-next-line arrow-body-style, react/prop-types
 const InvoiceModal = ({ handleClose }) => {
   const [activeComponent, setActiveComponent] = useState(1);
   return (
-    <div className="fixed inset-0 flex items-center justify-end bg-black bg-opacity-50 z-30">
+    <div className="fixed inset-0 flex items-center justify-end bg-black bg-opacity-50 z-40 mt-[3.2rem]">
       <div className="bg-white rounded shadow-lg px-6 py-4 w-[99%] md:w-[45%] lg:w-[50%] max-h-full overflow-y-auto">
         <h3 className="font-bold text-blue-500 text-lg ">
           {activeComponent === 1 && (
@@ -61,10 +63,10 @@ const InvoiceModal = ({ handleClose }) => {
             </div>
             {/* invoice  */}
             <div>
-              <div className="my-12 flex flex-col gap-3 ">
+              <div className="my-8 flex flex-col gap-3 ">
                 {invoiceData?.map((invoiceDatum, idx) => (
                   <div key={idx} className="flex justify-between items-center border-b">
-                    <h6 className=" font-bold text-gray-500">{invoiceDatum.name}</h6>
+                    <h6 className="text-sm font-bold text-gray-500">{invoiceDatum.name}</h6>
 
                     <div className="flex gap-5  items-center justify-center">
                       <p className=" text-gray-500">{invoiceDatum.retail_price} $</p>
@@ -83,7 +85,7 @@ const InvoiceModal = ({ handleClose }) => {
                       </ButtonGroup>
 
                       <IconButton aria-label="delete">
-                        <AiOutlineDelete className="text-red-500 text-2xl cursor-pointer" />
+                        <RiDeleteBin6Line className="text-red-500 text-xl cursor-pointer" />
                       </IconButton>
                     </div>
                   </div>
