@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 
 import Box from '@mui/material/Box';
-import { Divider } from '@mui/material';
 import Stack from '@mui/material/Stack';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
@@ -69,7 +68,7 @@ export default function Header({ onOpenNav }) {
       >
         {renderContent}
       </Toolbar>
-      <Divider/>
+      {/* <Divider/> */}
     </AppBar>
   );
 }

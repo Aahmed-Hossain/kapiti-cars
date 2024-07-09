@@ -1,28 +1,29 @@
-/* eslint-disable no-plusplus */
 import { useState } from 'react';
 
 import Typography from '@mui/material/Typography';
 import {
   Tab,
   Box,
-  Fab,
   Tabs,
   Card,
-  Modal,
-  Button,
   CardMedia,
   CardContent,
   OutlinedInput,
   InputAdornment,
   CardActionArea,
+
+  // Fab,
+  // Modal,
+  // Button,
 } from '@mui/material';
 
 import useAllProducts from 'src/hooks/useProducts';
 
 import Iconify from 'src/components/iconify';
 
-import { FaFileInvoiceDollar } from "react-icons/fa";
-import Invoice from '../Invoice';
+// import { FaFileInvoiceDollar } from 'react-icons/fa';
+
+import Invoice from '../invoice/Invoice';
 
 // ----------------------------------------------------------------------
 
@@ -36,8 +37,6 @@ export default function AppView() {
     setSelectedTab(newValue);
   };
 
-
-
   // const [selectedTab, setSelectedTab] = useState(0);
 
   // const handleChange = (index) => {
@@ -47,7 +46,7 @@ export default function AppView() {
 
   // Handle open modal
   const handleOpen = () => setOpen(true);
-  
+
   // Handle close modal
   const handleClose = () => setOpen(false);
 
@@ -75,11 +74,11 @@ export default function AppView() {
   //   setCategoryCounts(counts);
   // };
   const categories = [
-    { category: 'Air Filter', items: 11 },
-    { category: 'Battery', items: 20 },
-    { category: 'Brake Accessories', items: 3 },
-    { category: 'Cabin Air Filter', items: 1 },
-    { category: 'Cabin Filter', items: 4 },
+    { category: 'Air Filter',price: 45, items: 11 },
+    { category: 'Battery',price: 28, items: 20 },
+    { category: 'Brake Accessories',price: 90, items: 3 },
+    { category: 'Cabin Air Filter',price: 25, items: 1 },
+    { category: 'Cabin Filter',price: 67, items: 4 },
   ];
 
   const filteredProducts = allProducts?.filter(
@@ -293,58 +292,10 @@ export default function AppView() {
         </div>
       </div>
 
-
-
-
-
       <div>
-      {/* Floating Button */}
-
-<Fab
-    color="primary" 
-    aria-label="add" 
-    onClick={handleOpen} 
-    sx={{ 
-      position: 'fixed', 
-      bottom: 16, 
-      right: 16 
-    }}
-  >
-  <FaFileInvoiceDollar className='font-bold text-3xl' />
-  </Fab>
-  <Modal
-    open={open}
-    onClose={handleClose}
-    aria-labelledby="modal-title"
-    aria-describedby="modal-description"
-  >
-    <Box
-      sx={{
-        position: 'absolute',
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',
-        width: 400,
-        bgcolor: 'background.paper',
-        border: '2px solid #000',
-        boxShadow: 24,
-        p: 4,
-      }}
-    >
-      <Typography id="modal-title" variant="h6" component="h2">
-        Modal Title
-      </Typography>
-      <Typography id="modal-description" sx={{ mt: 2 }}>
-        This is the modal content.
-      </Typography>
-      <Button onClick={handleClose} sx={{ mt: 2 }} variant="contained" color="primary">
-        Close
-      </Button>
-    </Box>
-  </Modal>
-
-  </div>
- 
+        {/* Floating Button */}
+        <Invoice />
+      </div>
     </div>
   );
 }
