@@ -21,7 +21,7 @@ import Scrollbar from 'src/components/scrollbar';
 
 import { NAV } from './config-layout';
 import navConfig from './config-navigation';
-
+import logo from '../../../public/assets/images/kapticars.png'
 
 // ----------------------------------------------------------------------
 
@@ -81,18 +81,8 @@ export default function Nav({ openNav, onCloseNav }) {
         },
       }}
     >
-      <Link href='/'>
-      <Box
-        component="img"
-        sx={{
-          mt: 1,
-          ml: 2.5,
-          width: 180, 
-          height: 'auto', 
-        }}
-        alt="kaiticars logo"
-        src="/public/assets/kapticars.png"
-      />
+      <Link className='flex justify-center' href='/'>
+      <img className='w-52 mt-4' src={logo} alt="" />
     </Link>
       
 

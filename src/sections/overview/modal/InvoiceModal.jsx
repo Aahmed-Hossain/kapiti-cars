@@ -1,10 +1,9 @@
 import { useState } from 'react';
-
-import { Button, ButtonGroup, Divider, IconButton } from '@mui/material';
-
-import { RiDeleteBin6Line } from "react-icons/ri";
 import { FaPlus } from 'react-icons/fa6';
 import { FiMinus } from 'react-icons/fi';
+import { RiDeleteBin6Line } from "react-icons/ri";
+
+import { Button, Divider, IconButton, ButtonGroup } from '@mui/material';
 
 import AddLabour from './AddLabour';
 import AddInventory from './AddInventory';
@@ -21,14 +20,14 @@ const invoiceData = [
 const InvoiceModal = ({ handleClose }) => {
   const [activeComponent, setActiveComponent] = useState(1);
   return (
-    <div className="fixed inset-0 flex items-center justify-end bg-black bg-opacity-50 z-40 mt-[3.2rem]">
-      <div className="bg-white rounded shadow-lg px-6 py-4 w-[99%] md:w-[45%] lg:w-[50%] max-h-full overflow-y-auto">
+    <div className="fixed inset-0 flex items-center justify-end bg-black bg-opacity-50 z-40 mt-[3.1rem]">
+      <div className="bg-white rounded shadow-lg px-6 py-4 w-[99%] md:w-[55%] lg:w-[50%] max-h-full overflow-y-auto">
         <h3 className="font-bold text-blue-500 text-lg ">
           {activeComponent === 1 && (
             <div>
-              {' '}
+              
               Invoice
-              <Divider sx={{ mt: 0.2 }} />{' '}
+              <Divider sx={{ mt: 0.2 }} />
             </div>
           )}
           {activeComponent === 2 && <div>Add Labour</div>}

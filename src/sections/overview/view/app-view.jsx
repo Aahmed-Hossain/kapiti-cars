@@ -11,75 +11,27 @@ import {
   OutlinedInput,
   InputAdornment,
   CardActionArea,
-
-  // Fab,
-  // Modal,
-  // Button,
 } from '@mui/material';
 
 import useAllProducts from 'src/hooks/useProducts';
 
 import Iconify from 'src/components/iconify';
 
-// import { FaFileInvoiceDollar } from 'react-icons/fa';
-
+import { categories } from 'src/_mock/categories';
 import Invoice from '../invoice/Invoice';
 
-// ----------------------------------------------------------------------
+import productImage from '../../../../public/assets/images/box2.png'
 
 export default function AppView() {
-  // const [products, setProducts] = useState([]);
-  // const [categoryCounts, setCategoryCounts] = useState({});
-  // console.log(categoryCounts)
 
   const [selectedTab, setSelectedTab] = useState(0);
   const handleChange = (event, newValue) => {
     setSelectedTab(newValue);
   };
 
-  // const [selectedTab, setSelectedTab] = useState(0);
-
-  // const handleChange = (index) => {
-  //   setSelectedTab(index);
-  // };
-  const [open, setOpen] = useState(false);
-
-  // Handle open modal
-  const handleOpen = () => setOpen(true);
-
-  // Handle close modal
-  const handleClose = () => setOpen(false);
-
   const [allProducts] = useAllProducts();
-  console.log(allProducts);
 
-  // useEffect(() => {
-  //   fetch('http://localhost:5000/products')
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       setProducts(data);
-  //       calculateCategoryCounts(data);
-  //     });
-  // }, []);
-
-  // const calculateCategoryCounts = (data) => {
-  //   const counts = data.reduce((acc, product) => {
-  //     const { product_type_display } = product;
-  //     if (!acc[product_type_display]) {
-  //       acc[product_type_display] = 0;
-  //     }
-  //     acc[product_type_display]++;
-  //     return acc;
-  //   }, {});
-  //   setCategoryCounts(counts);
-  // };
-  const categories = [
-    { category: 'Air Filter',price: 45, items: 11 },
-    { category: 'Battery',price: 28, items: 20 },
-    { category: 'Brake Accessories',price: 90, items: 3 },
-    { category: 'Cabin Air Filter',price: 25, items: 1 },
-    { category: 'Cabin Filter',price: 67, items: 4 },
-  ];
+ 
 
   const filteredProducts = allProducts?.filter(
     (product) => product?.product_type_display === categories[selectedTab]?.category
@@ -155,98 +107,6 @@ export default function AppView() {
             ))}
           </Tabs>
 
-          {/* <Tabs
-  sx={{
-    mt: 1.5,
-    display: 'grid',
-  
-    gridTemplateColumns: { xs: 'repeat(auto-fill, minmax(100%, 1fr))', sm: 'repeat(auto-fill, minmax(150px, 1fr))', md: 'repeat(auto-fill, minmax(100%, 2fr))', lg:'repeat(auto-fill, minmax(100%, 3fr))', xl: 'repeat(auto-fill, minmax(100%, 2fr))'},
-    gap:2,
-    '& .MuiTabs-indicator': {
-      display: 'none',
-    },
-  }}
-  value={selectedTab}
-  onChange={handleChange}
-  aria-label="product categories"
-  indicatorColor="none"
->
-  {categories.map((category, index) => (
-    <Tab
-      sx={{
-        textTransform: 'none',
-        minWidth: 100,
-        backgroundColor: selectedTab === index ? '#E3F2FD' : '#fff',
-        borderRadius: 0.5,
-        boxShadow: 1,
-        '&:hover': {
-          backgroundColor: '#E3F2FD',
-        },
-        '&.Mui-selected': {
-          backgroundColor: '#E3F2FD',
-        },
-      }}
-      key={index}
-      label={`${category.category}: ${category.items}`}
-    />
-  ))}
-</Tabs> */}
-
-          {/* <Tabs
-            sx={{
-              '& .MuiTabs-flexContainer': {
-                display: 'flex',
-                flexWrap: 'wrap',
-              },
-              '& .MuiTabs-indicator': {
-                display: 'none',
-              },
-            }}
-            value={selectedTab}
-            onChange={handleChange}
-            variant="scrollable"
-            scrollButtons="auto"
-            aria-label="product categories"
-            indicatorColor="none"
-          >
-            {categories.map((category, index) => (
-              <Tab
-                sx={{
-                  textTransform: 'none',
-                  minWidth: 100,
-                  backgroundColor: selectedTab === index ? '#E3F2FD' : '#fff',
-                  borderRadius: 0.8,
-                  mr: 1,
-                  mt:1,
-                  border: 1,
-                  boxShadow: 1,
-                  '&:hover': {
-                    backgroundColor: '#E3F2FD',
-                  },
-                  '&.Mui-selected': {
-                    backgroundColor: '#E3F2FD',
-                  },
-                }}
-                key={index}
-                label={`${category.category}: ${category.items}`}
-              />
-            ))}
-          </Tabs> */}
-
-          {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-      {categories.map((category, index) => (
-        // eslint-disable-next-line react/button-has-type
-        <button
-          key={index}
-          onClick={() => handleChange(index)}
-          className={`text-base px-4 py-2 mr-1 mt-1 rounded border-1 shadow ${
-            selectedTab === index ? 'bg-blue-50' : 'bg-white'
-          } hover:bg-blue-100`}
-        >
-          {`${category.category}: ${category.items}`}
-        </button>
-      ))}
-    </div> */}
 
           <div className="mt-4 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-5 2xl:grid-cols-10 gap-6 md:gap-4 lg:gap-4 xl:gap-6">
             {filteredProducts.map((product, idx) => (
@@ -257,8 +117,8 @@ export default function AppView() {
                       component="img"
                       height={50}
                       width={50}
-                      image="/public/assets/box2.png"
-                      alt="green iguana"
+                      image={productImage}
+                      alt="product image"
                     />
                     <CardContent>
                       <Typography align="center" variant="body2">
@@ -283,7 +143,7 @@ export default function AppView() {
                   }}
                 >
                   <Typography variant="caption" display="block" color="blue">
-                    {product.product_type_display}
+                   <span className='font-bold'> {product.product_type_display}</span>
                   </Typography>
                 </Box>
               </Box>
