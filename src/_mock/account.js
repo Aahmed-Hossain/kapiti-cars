@@ -2,7 +2,5 @@
 export const account = {
   displayName: 'Ahmed Hsn',
   email: 'ahmed@hossain.com',
-  photoURL: '../../public/assets/images/profle-logo-img.jpg',
+  photoURL: 'https://i.ibb.co/ssvGZj6/file.png',
 };
-// https://i.ibb.co/6HW8fm4/box2.png
-// https://i.ibb.co/NyHbBFQ/skdkshks.png

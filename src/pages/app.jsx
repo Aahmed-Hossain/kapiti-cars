@@ -8,9 +8,8 @@ export default function AppPage() {
   return (
     <>
       <Helmet>
-        <title> Dashboard | Minimal UI </title>
+        <title> Dashboard | Kapiti Car </title>
       </Helmet>
-
       <AppView />
     </>
   );

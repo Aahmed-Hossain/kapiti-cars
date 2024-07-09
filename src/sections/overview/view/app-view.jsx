@@ -6,7 +6,6 @@ import {
   Box,
   Tabs,
   Card,
-  CardMedia,
   CardContent,
   OutlinedInput,
   InputAdornment,
@@ -15,11 +14,11 @@ import {
 
 import useAllProducts from 'src/hooks/useProducts';
 
+import { categories } from 'src/_mock/categories';
+
 import Iconify from 'src/components/iconify';
 
-import { categories } from 'src/_mock/categories';
 import Invoice from '../invoice/Invoice';
-
 import productImage from '../../../../public/assets/images/box2.png'
 
 export default function AppView() {
@@ -37,7 +36,7 @@ export default function AppView() {
     (product) => product?.product_type_display === categories[selectedTab]?.category
   );
   return (
-    <div className="xl:ml-0 md:ml-2 ml-2 flex flex-col xl:flex-row gap-2">
+    <div className="xl:ml-0 md:ml-2 ml-2 flex flex-col xl:flex-row gap-2 ">
       {/* left  */}
       <div className="w-full">
         <Typography variant="h6" sx={{ mb: 2, mt: 1 }}>
@@ -108,18 +107,15 @@ export default function AppView() {
           </Tabs>
 
 
-          <div className="mt-4 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-5 2xl:grid-cols-10 gap-6 md:gap-4 lg:gap-4 xl:gap-6">
+          <div className="mt-4 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8 gap-3">
             {filteredProducts.map((product, idx) => (
               <Box sx={{ position: 'relative', display: 'inline-block' }} key={idx}>
-                <Card sx={{ width: 'auto', maxWidth: 400, boxShadow: 4 }}>
+                <Card sx={{ height: 160 , maxWidth: 350, boxShadow: 6,borderRadius:1 }}>
                   <CardActionArea>
-                    <CardMedia
-                      component="img"
-                      height={50}
-                      width={50}
-                      image={productImage}
-                      alt="product image"
-                    />
+
+                  <div className='flex justify-center items-center'>
+                  <img className='w-20' src={productImage} alt="" />
+                  </div>
                     <CardContent>
                       <Typography align="center" variant="body2">
                         {product.brand_display}
@@ -134,7 +130,7 @@ export default function AppView() {
                   sx={{
                     position: 'absolute',
                     top: '7%',
-                    right: 5,
+                    right: 1,
                     transform: 'translateY(-50%)',
                     backgroundColor: '#E3F2FD',
                     padding: '4px  6px',
@@ -143,7 +139,7 @@ export default function AppView() {
                   }}
                 >
                   <Typography variant="caption" display="block" color="blue">
-                   <span className='font-bold'> {product.product_type_display}</span>
+                   <span className='font-semibold text-xs'> {product.product_type_display}</span>
                   </Typography>
                 </Box>
               </Box>
@@ -151,9 +147,7 @@ export default function AppView() {
           </div>
         </div>
       </div>
-
       <div>
-        {/* Floating Button */}
         <Invoice />
       </div>
     </div>

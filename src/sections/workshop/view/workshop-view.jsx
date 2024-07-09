@@ -3,10 +3,10 @@ import Typography from '@mui/material/Typography';
 
 // ----------------------------------------------------------------------
 
-export default function BlogView() {
+export default function WorkshopView() {
   return (
     
-        <Typography variant="h4">Blog</Typography>
+        <Typography variant="h4">Workshop</Typography>
 
   );
 }

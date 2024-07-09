@@ -12,7 +12,7 @@ const useAllProducts = () => {
     queryKey: ["allProducts"],
     queryFn: async () => {
       const res = await axios.get(
-        `http://localhost:5000/products`
+        `https://course-dashboard-server.vercel.app/products`
       );
       return res.data;
     },
