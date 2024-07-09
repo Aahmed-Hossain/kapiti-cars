@@ -22,11 +22,8 @@ export default function Invoice() {
       right: 16 
     }}
   >
-    Invoice
-  <FaFileInvoiceDollar />
+  <FaFileInvoiceDollar className='font-bold text-3xl' />
   </Fab>
-  
-  {/* Modal */}
   <Modal
     open={open}
     onClose={handleClose}

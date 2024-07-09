@@ -53,7 +53,6 @@ export default function UserTableRow({
         </TableCell>
 
         <TableCell>{company}</TableCell>
-
         <TableCell>{role}</TableCell>
 
         <TableCell align="center">{isVerified ? 'Yes' : 'No'}</TableCell>

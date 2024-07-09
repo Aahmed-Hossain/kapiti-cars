@@ -299,12 +299,6 @@ export default function AppView() {
 
       <div>
       {/* Floating Button */}
-     
-     
-
-
-
-      <div>
 
 <Fab
     color="primary" 
@@ -318,8 +312,6 @@ export default function AppView() {
   >
   <FaFileInvoiceDollar className='font-bold text-3xl' />
   </Fab>
-  
-  {/* Modal */}
   <Modal
     open={open}
     onClose={handleClose}
@@ -350,8 +342,9 @@ export default function AppView() {
       </Button>
     </Box>
   </Modal>
+
   </div>
-    </div>
+ 
     </div>
   );
 }
