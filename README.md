@@ -1,46 +1,44 @@
-## Minimal [(Free version)](https://minimal-kit-react.vercel.app/)
+#### Live Link: https://kapiticars.vercel.app
+## Table of Contents
 
-![license](https://img.shields.io/badge/license-MIT-blue.svg)
+- [Tech Stack](#tech-stack)
+- [Design Explanation](#design-explanation)
+- [Key Features](#key-features)
+- [Installation](#installation)
+- [Screenshoot](#screenshoot)
 
-> Free React Admin Dashboard made with Material-UI components and React.
+## Tech Stack
+- React.js
+- Tailwindcss
+- Material Ui
+- React-hook-form
+- React-helmet
 
-![preview](public/assets/preview.jpg)
 
-## Demo
+## Design Explanation
+- The invoice was always visible on the right side of the screen. By moving the invoice to a floating button on the bottom right, the main screen remains clean and focused on the products. Users can browse and select products without any distractions.
+- The floating button gives users the control to view the invoice only when they need to. This on-demand visibility empowers user experiences.
+-  When users are ready to review or confirm the invoice, they can simply click the floating button. This separation of tasks (browsing vs. reviewing) creates a more intuitive and enjoyable user journey.
+- The design emphasizes user-centric design principles by prioritizing a clean interface, user control, and efficient use of screen space. 
 
-- [Dashboard Page](https://minimal-kit-react.vercel.app/)
-- [Users Page](https://minimal-kit-react.vercel.app/user)
-- [Products Page](https://minimal-kit-react.vercel.app/products)
-- [Blog Page](https://minimal-kit-react.vercel.app/blog)
-- [Login Page](https://minimal-kit-react.vercel.app/login)
-- [Not Found Page](https://minimal-kit-react.vercel.app/404)
+## Key Features
+- This dashboard interfaces fully responsive frontend application built using React.js, Tailwind and Material-UI.
+- It aims to deliver a seamless user experience across various devices, including desktops, tablets, and mobile phones.
+- Component-Based Architecture: Built with reusable components, making the codebase modular, maintainable, and scalable.
+- Modern UI Elements: Incorporates modern UI elements like cards, buttons, dialogs, and forms provided by Material-UI to enhance user interaction and engagement.
+- Grid Layout: Utilizes Tailwind's Grid layout to create a flexible layout that adjusts according to screen size.
 
-## Quick start
+## Installation
 
-- [Download from Github](https://github.com/minimal-ui-kit/material-kit-react/archive/refs/heads/main.zip) or clone the repo : `git clone https://github.com/minimal-ui-kit/material-kit-react.git`
-- Recommended `Node.js v18.x`.
-- **Install:** `yarn install`
-- **Start:** `yarn dev`
-- **Build:** `yarn build`
+```bash
+git clone https://github.com/Aahmed-Hossain/kapiti-cars.git
+cd kapiti-cars
+npm install
+npm run dev
+```
 
-## Upgrade to PRO Version
+## Screenshoot
+![dashboard--](https://github.com/Aahmed-Hossain/kapiti-cars/assets/138388233/b6d7c1d6-7798-40fe-b565-18ae21c8cf91)
+![dashboard-invoice](https://github.com/Aahmed-Hossain/kapiti-cars/assets/138388233/009cd7e4-ff1b-4555-b633-462ccbef9342)
 
-| Minimal Free     | [Minimal Pro](https://material-ui.com/store/items/minimal-dashboard/) |
-| :--------------- | :-------------------------------------------------------------------- |
-| **6** Demo Pages | **70+** Demo Pages                                                    |
-| -                | Authentication with **Amplify**, **Auth0**, **JWT** and **Firebase**  |
-| -                | [+More components](https://minimals.cc/components)                    |
-| -                | Dark & light mode                                                     |
-| -                | Next.js version                                                       |
-| -                | TypeScript version (Standard Plus and Extended license)               |
-| -                | Design Figma File (Standard Plus and Extended license)                |
-| -                | Complete Users Flows                                                  |
-| -                | Learn more: [Package & License](https://docs.minimals.cc/package)     |
 
-## License
-
-Distributed under the MIT License. See [LICENSE](https://github.com/minimal-ui-kit/minimal.free/blob/main/LICENSE.md) for more information.
-
-## Contact us
-
-Email: support@minimals.cc
