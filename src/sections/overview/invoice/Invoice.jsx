@@ -5,6 +5,7 @@ import { FaFileInvoiceDollar } from 'react-icons/fa';
 import { Fab } from '@mui/material';
 
 import InvoiceModal from '../modal/InvoiceModal';
+import { InvoiceStyle } from '../styles/dashboardStyles';
 
 const Invoice = () => {
   const [open, setOpen] = useState(false);
@@ -17,12 +18,7 @@ const Invoice = () => {
         color="primary"
         aria-label="add"
         onClick={handleOpen}
-        sx={{
-          position: 'fixed',
-          bottom: 16,
-          right: 16,
-          backgroundColor: '#42A5F5'
-        }}
+        sx={InvoiceStyle}
       >
         <FaFileInvoiceDollar className="font-bold text-3xl" />
       </Fab>}

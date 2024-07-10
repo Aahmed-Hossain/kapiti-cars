@@ -12,14 +12,14 @@ import {
   CardActionArea,
 } from '@mui/material';
 
-import useAllProducts from 'src/hooks/useProducts';
-
+import { allProducts } from 'src/_mock/products';
 import { categories } from 'src/_mock/categories';
 
 import Iconify from 'src/components/iconify';
 
 import Invoice from '../invoice/Invoice';
-import productImage from '../../../../public/assets/images/box2.png'
+import productImage from '../../../../public/assets/images/box2.png';
+import {tabStyles,cardStyle,tabContainer,productStyle, cardContainer, cardContentStyle, searchButtonStyle, dashboardContainer,  } from '../styles/dashboardStyles';
 
 export default function AppView() {
 
@@ -27,29 +27,18 @@ export default function AppView() {
   const handleChange = (event, newValue) => {
     setSelectedTab(newValue);
   };
-
-  const [allProducts] = useAllProducts();
-
- 
-
   const filteredProducts = allProducts?.filter(
     (product) => product?.product_type_display === categories[selectedTab]?.category
   );
   return (
-    <div className="xl:ml-0 md:ml-2 ml-2 flex flex-col xl:flex-row gap-2 ">
+    <div className={dashboardContainer}>
       {/* left  */}
       <div className="w-full">
         <Typography variant="h6" sx={{ mb: 2, mt: 1 }}>
           Job Details And Record Time
         </Typography>
         <OutlinedInput
-          sx={{
-            width: '100%',
-            height: 40,
-            '& .MuiOutlinedInput-input': {
-              padding: '10px',
-            },
-          }}
+          sx={searchButtonStyle}
           placeholder="Search or Scan product"
           startAdornment={
             <InputAdornment position="start">
@@ -63,17 +52,7 @@ export default function AppView() {
 
         <div>
           <Tabs
-            sx={{
-              '& .MuiTabs-flexContainer': {
-                display: 'flex',
-                flexDirection: { xs: 'row', sm: 'row' },
-                justifyContent: { xs: 'flex-start', sm: 'flex-start' },
-                alignItems: { xs: 'stretch', sm: 'center' },
-              },
-              '& .MuiTabs-indicator': {
-                display: 'none',
-              },
-            }}
+            sx={tabContainer}
             value={selectedTab}
             onChange={handleChange}
             variant="scrollable"
@@ -83,23 +62,7 @@ export default function AppView() {
           >
             {categories.map((category, index) => (
               <Tab
-                sx={{
-                  textTransform: 'none',
-                  minWidth: 100,
-                  border: 1,
-                  width: { xs: '100%', sm: 'auto' },
-                  backgroundColor: selectedTab === index ? '#E3F2FD' : '#fff',
-                  borderRadius: 0.5,
-                  mt: 2,
-                  mr: 1,
-                  boxShadow: 1,
-                  '&:hover': {
-                    backgroundColor: '#E3F2FD',
-                  },
-                  '&.Mui-selected': {
-                    backgroundColor: '#E3F2FD',
-                  },
-                }}
+                sx={{backgroundColor: selectedTab === index ? '#E3F2FD' : '#fff',...tabStyles}}
                 key={index}
                 label={`${category.category}: ${category.items}`}
               />
@@ -107,10 +70,10 @@ export default function AppView() {
           </Tabs>
 
 
-          <div className="mt-4 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8 gap-3">
+          <div className={productStyle}>
             {filteredProducts.map((product, idx) => (
-              <Box sx={{ position: 'relative', display: 'inline-block' }} key={idx}>
-                <Card sx={{ height: 160 , maxWidth: 350, boxShadow: 6,borderRadius:1 }}>
+              <Box sx={cardContainer} key={idx}>
+                <Card sx={cardStyle}>
                   <CardActionArea>
 
                   <div className='flex justify-center items-center'>
@@ -127,16 +90,7 @@ export default function AppView() {
                   </CardActionArea>
                 </Card>
                 <Box
-                  sx={{
-                    position: 'absolute',
-                    top: '7%',
-                    right: 1,
-                    transform: 'translateY(-50%)',
-                    backgroundColor: '#E3F2FD',
-                    padding: '4px  6px',
-                    borderRadius: '6px',
-                    boxShadow: 12,
-                  }}
+                  sx={cardContentStyle}
                 >
                   <Typography variant="caption" display="block" color="blue">
                    <span className='font-semibold text-xs'> {product.product_type_display}</span>

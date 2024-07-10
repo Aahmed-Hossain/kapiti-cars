@@ -10,12 +10,13 @@ import { invoiceData } from 'src/_mock/invoice';
 
 import AddLabour from './AddLabour';
 import AddInventory from './AddInventory';
+import { btn, addBtn, cancelBtn, modalContent, invoiceHeader, invoiceContent, modalContainer, deleteIconStyle } from '../styles/dashboardStyles';
 
 const InvoiceModal = ({ handleClose }) => {
   const [activeComponent, setActiveComponent] = useState(1);
   return (
-    <div className="fixed inset-0 flex items-center justify-end bg-black bg-opacity-50 z-40 mt-[3.1rem]">
-      <div className="bg-white rounded shadow-lg px-2 md:px-6 py-2 md:py-4 w-full md:w-[70%] lg:w-[60%] xl:w-[45%] 2xl:w-[50%] max-h-full overflow-y-auto">
+    <div className={modalContainer}>
+      <div className={modalContent}>
         <h3 className="font-bold text-blue-500 text-lg ">
           {activeComponent === 1 && (
             <div>
@@ -30,11 +31,11 @@ const InvoiceModal = ({ handleClose }) => {
         {/* invoice section */}
         {activeComponent === 1 && (
           <div className="">
-            {/* add buttons */}
+            {/* buttons */}
             <div className="flex gap-3 justify-end mt-2">
               <div>
                 <Button
-                  sx={{ borderRadius: 25, backgroundColor: '#42A5F5' }}
+                  sx={btn}
                   onClick={() => setActiveComponent(activeComponent + 2)}
                   variant="contained"
                   size="small"
@@ -44,7 +45,7 @@ const InvoiceModal = ({ handleClose }) => {
               </div>
               <div>
                 <Button
-                  sx={{ borderRadius: 25, backgroundColor: '#42A5F5' }}
+                  sx={btn}
                   onClick={() => setActiveComponent(activeComponent + 1)}
                   variant="contained"
                   size="small"
@@ -57,9 +58,9 @@ const InvoiceModal = ({ handleClose }) => {
             <div>
               <div className="my-6 flex flex-col  gap-3 ">
                 {invoiceData?.map((invoiceDatum, idx) => (
-                  <div key={idx} className="flex justify-between items-center border-b">
+                  <div key={idx} className={invoiceContent}>
                    
-                    <h6 className="text-sm font-light md:font-bold text-gray-500">{invoiceDatum.name}</h6>
+                    <h6 className={invoiceHeader}>{invoiceDatum.name}</h6>
 
                     <div className="flex gap-2 md:gap-5 items-center justify-center ">
                       <p className=" text-gray-500 font-extralight">{invoiceDatum.retail_price}$</p>
@@ -76,7 +77,7 @@ const InvoiceModal = ({ handleClose }) => {
                           <FaPlus />
                         </Button>
                       </ButtonGroup>
-                        <RiDeleteBin6Line className="text-red-500 font-light md:font-normal text-base md:text-xl cursor-pointer" />
+                        <RiDeleteBin6Line className={deleteIconStyle} />
 
                     </div>
                   </div>
@@ -92,7 +93,7 @@ const InvoiceModal = ({ handleClose }) => {
         <div className="flex justify-end space-x-2 mt-4">
           <button
             type="button"
-            className="bg-red-100 rounded-full px-3 py-1 text-red-500 hover:bg-red-200"
+            className={cancelBtn}
             onClick={handleClose}
           >
             Cancel
@@ -100,7 +101,7 @@ const InvoiceModal = ({ handleClose }) => {
 
           <button
             type="button"
-            className="bg-blue-100 rounded-full px-6 py-1 text-blue-500 hover:bg-blue-200"
+            className={addBtn}
             onClick={handleClose}
           >
             Add
